@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chá de Casa Nova</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        li.selected {
+            background-color: #4FD144;
+            color: white;
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+        .check {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Lista de Chá de Casa Nova</h1>
+    <ul id="presentList">
+        <!-- A lista de presentes será gerada aqui -->
+    </ul>
+</div>
+
+<script>
+    // Lista de presentes
+    const presents = [
+        "Escorredor de pratos",
+        "Potes Plásticos",
+        "Potes de vidro",
+        "Panos de prato",
+        "Faca de pão",
+        "Rodinho de pia",
+        "Ralador de queijo",
+        "Escorredor de macarrão",
+        "Leiteira",
+        "Jogo de pratos",
+        "Bowls",
+        "Lixeira de pia",
+        "Garrafa de café",
+        "Escumadeira",
+        "Talheres",
+        "Potes de armazenamento",
+        "Faqueiro",
+        "Panelas",
+        "Espátula de silicone",
+        "Frigideira",
+        "Porta-Talheres",
+        "Panela de pressão",
+        "Descascador de legumes",
+        "Passador de manteiga",
+        "Forma de gelo",
+        "Tábua de corte",
+        "Moedor de pimenta",
+        "Saca-rolhas",
+        "Saladeira",
+        "Abridor de lata",
+        "Porta-guardanapos",
+        "Espremedor de alho",
+        "Colher de pau",
+        "Fouet",
+        "Peneira",
+        "Afiador de facas",
+        "Assadeiras",
+        "Pincel de cozinha",
+        "Copo medidor",
+        "Avental",
+        "Sanduicheira elétrica",
+        "Taças",
+        "Descanso de prato",
+        "Fatiador de pizza",
+        "Luva térmica",
+        "Martelo de carne",
+        "Rolo de massa",
+        "Fruteira",
+        "Pegador de macarrão",
+        "Kit de fondue",
+        "Descanso de panela",
+        "Suporte de papel toalha",
+        "Colheres de medida",
+        "Copos para água",
+        "Copos para cerveja",
+        "Copos para drinks",
+        "Cuscuzeira",
+        "Cutelo",
+        "Descanso de panelas",
+        "Descascador de legumes",
+        "Desentupidor de pia",
+        "Escorredor de arroz",
+        "Escorredor de louça e talheres",
+        "Escorredor de macarrão",
+        "Espanador de pó",
+        "Espátulas",
+        "Espremedor de alho",
+        "Espremedor de limão",
+        "Faca para carne",
+        "Faca para frutas/legumes",
+        "Faca para pão",
+        "Ferro de passar roupa",
+        "Forma de pizza",
+        "Formas de gelo",
+        "Formas para bolo",
+        "Formas para torta/pudim",
+        "Funil",
+        "Galheteiro",
+        "Garfinhos para petiscos",
+        "Garrafas térmicas ( café e chá)",
+        "Jarra para água e suco",
+        "Jogo de xícaras",
+        "Jogos americanos",
+        "Liquidificador",
+        "Lixeiras para chão",
+        "Mantegueira",
+        "Moedor de pimenta",
+        "Panos de chão",
+        "Pegador de massa",
+        "Pegador de salada",
+        "Peneiras (pequena, média e grande)",
+        "Petisqueira",
+        "Pilão",
+        "Pincel culinário",
+        "Pirex",
+        "Pratos de sobremesa",
+        "Pratos fundos",
+        "Pratos rasos",
+        "Porta copos",
+        "Porta frios",
+        "Porta guardanapo",
+        "Porta temperos",
+        "Potes plásticos multiuso",
+        "Potes para microondas e freezer",
+        "Puxa-saco",
+        "Queijeira",
+        "Ralador",
+        "Rodinho de pia",
+        "Rolo para abrir massa",
+        "Saleiro, pimenteiro e paliteiro",
+        "Suporte de detergente e esponja",
+        "Suporte para filtro de café",
+        "Tábua de passar roupa",
+        "Tapetes",
+        "Tesoura de cozinha",
+        "Tigela",
+        "Toalha de mesa",
+        "Torradeira",
+        "Travessas/refratários",
+        "Vassoura, rodo e pá"
+    ];
+
+    // Função para renderizar a lista
+    const renderList = () => {
+        const listContainer = document.getElementById("presentList");
+        presents.forEach(present => {
+            const listItem = document.createElement("li");
+            listItem.textContent = present;
+            listItem.onclick = () => listItem.classList.toggle("selected");
+            listContainer.appendChild(listItem);
+        });
+    };
+
+    // Chama a função para renderizar a lista ao carregar a página
+    renderList();
+</script>
+
+</body>
+</html>
