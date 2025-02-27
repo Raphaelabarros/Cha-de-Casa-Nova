@@ -40,7 +40,11 @@
             background-color: #4FD144;
             color: white;
         }
-        li:hover {
+        li.disabled {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+        }
+        li:hover:not(.disabled) {
             background-color: #f0f0f0;
         }
         .check {
@@ -60,137 +64,63 @@
 <script>
     // Lista de presentes
     const presents = [
-        "Escorredor de pratos",
-        "Potes Plásticos",
-        "Potes de vidro",
-        "Panos de prato",
-        "Faca de pão",
-        "Rodinho de pia",
-        "Ralador de queijo",
-        "Escorredor de macarrão",
-        "Leiteira",
-        "Jogo de pratos",
-        "Bowls",
-        "Lixeira de pia",
-        "Garrafa de café",
-        "Escumadeira",
-        "Talheres",
-        "Potes de armazenamento",
-        "Faqueiro",
-        "Panelas",
-        "Espátula de silicone",
-        "Frigideira",
-        "Porta-Talheres",
-        "Panela de pressão",
-        "Descascador de legumes",
-        "Passador de manteiga",
-        "Forma de gelo",
-        "Tábua de corte",
-        "Moedor de pimenta",
-        "Saca-rolhas",
-        "Saladeira",
-        "Abridor de lata",
-        "Porta-guardanapos",
-        "Espremedor de alho",
-        "Colher de pau",
-        "Fouet",
-        "Peneira",
-        "Afiador de facas",
-        "Assadeiras",
-        "Pincel de cozinha",
-        "Copo medidor",
-        "Avental",
-        "Sanduicheira elétrica",
-        "Taças",
-        "Descanso de prato",
-        "Fatiador de pizza",
-        "Luva térmica",
-        "Martelo de carne",
-        "Rolo de massa",
-        "Fruteira",
-        "Pegador de macarrão",
-        "Kit de fondue",
-        "Descanso de panela",
-        "Suporte de papel toalha",
-        "Colheres de medida",
-        "Copos para água",
-        "Copos para cerveja",
-        "Copos para drinks",
-        "Cuscuzeira",
-        "Cutelo",
-        "Descanso de panelas",
-        "Descascador de legumes",
-        "Desentupidor de pia",
-        "Escorredor de arroz",
-        "Escorredor de louça e talheres",
-        "Escorredor de macarrão",
-        "Espanador de pó",
-        "Espátulas",
-        "Espremedor de alho",
-        "Espremedor de limão",
-        "Faca para carne",
-        "Faca para frutas/legumes",
-        "Faca para pão",
-        "Ferro de passar roupa",
-        "Forma de pizza",
-        "Formas de gelo",
-        "Formas para bolo",
-        "Formas para torta/pudim",
-        "Funil",
-        "Galheteiro",
-        "Garfinhos para petiscos",
-        "Garrafas térmicas ( café e chá)",
-        "Jarra para água e suco",
-        "Jogo de xícaras",
-        "Jogos americanos",
-        "Liquidificador",
-        "Lixeiras para chão",
-        "Mantegueira",
-        "Moedor de pimenta",
-        "Panos de chão",
-        "Pegador de massa",
-        "Pegador de salada",
-        "Peneiras (pequena, média e grande)",
-        "Petisqueira",
-        "Pilão",
-        "Pincel culinário",
-        "Pirex",
-        "Pratos de sobremesa",
-        "Pratos fundos",
-        "Pratos rasos",
-        "Porta copos",
-        "Porta frios",
-        "Porta guardanapo",
-        "Porta temperos",
-        "Potes plásticos multiuso",
-        "Potes para microondas e freezer",
-        "Puxa-saco",
-        "Queijeira",
-        "Ralador",
-        "Rodinho de pia",
-        "Rolo para abrir massa",
-        "Saleiro, pimenteiro e paliteiro",
-        "Suporte de detergente e esponja",
-        "Suporte para filtro de café",
-        "Tábua de passar roupa",
-        "Tapetes",
-        "Tesoura de cozinha",
-        "Tigela",
-        "Toalha de mesa",
-        "Torradeira",
-        "Travessas/refratários",
-        "Vassoura, rodo e pá"
+        "Escorredor de pratos", "Potes Plásticos", "Potes de vidro", "Panos de prato", "Faca de pão",
+        "Rodinho de pia", "Ralador de queijo", "Escorredor de macarrão", "Leiteira", "Jogo de pratos",
+        "Bowls", "Lixeira de pia", "Garrafa de café", "Escumadeira", "Talheres", "Potes de armazenamento",
+        "Faqueiro", "Panelas", "Espátula de silicone", "Frigideira", "Porta-Talheres", "Panela de pressão",
+        "Descascador de legumes", "Passador de manteiga", "Forma de gelo", "Tábua de corte", "Moedor de pimenta",
+        "Saca-rolhas", "Saladeira", "Abridor de lata", "Porta-guardanapos", "Espremedor de alho", "Colher de pau",
+        "Fouet", "Peneira", "Afiador de facas", "Assadeiras", "Pincel de cozinha", "Copo medidor", "Avental",
+        "Sanduicheira elétrica", "Taças", "Descanso de prato", "Fatiador de pizza", "Luva térmica", "Martelo de carne",
+        "Rolo de massa", "Fruteira", "Pegador de macarrão", "Kit de fondue", "Descanso de panela",
+        "Suporte de papel toalha", "Colheres de medida", "Copos para água", "Copos para cerveja", "Copos para drinks",
+        "Cuscuzeira", "Cutelo", "Descanso de panelas", "Descascador de legumes", "Desentupidor de pia",
+        "Escorredor de arroz", "Escorredor de louça e talheres", "Escorredor de macarrão", "Espanador de pó",
+        "Espátulas", "Espremedor de alho", "Espremedor de limão", "Faca para carne", "Faca para frutas/legumes",
+        "Faca para pão", "Ferro de passar roupa", "Forma de pizza", "Formas de gelo", "Formas para bolo",
+        "Formas para torta/pudim", "Funil", "Galheteiro", "Garfinhos para petiscos", "Garrafas térmicas (café e chá)",
+        "Jarra para água e suco", "Jogo de xícaras", "Jogos americanos", "Liquidificador", "Lixeiras para chão",
+        "Mantegueira", "Moedor de pimenta", "Panos de chão", "Pegador de massa", "Pegador de salada",
+        "Peneiras (pequena, média e grande)", "Petisqueira", "Pilão", "Pincel culinário", "Pirex",
+        "Pratos de sobremesa", "Pratos fundos", "Pratos rasos", "Porta copos", "Porta frios", "Porta guardanapo",
+        "Porta temperos", "Potes plásticos multiuso", "Potes para microondas e freezer", "Puxa-saco", "Queijeira",
+        "Ralador", "Rodinho de pia", "Rolo para abrir massa", "Saleiro, pimenteiro e paliteiro",
+        "Suporte de detergente e esponja", "Suporte para filtro de café", "Tábua de passar roupa", "Tapetes",
+        "Tesoura de cozinha", "Tigela", "Toalha de mesa", "Torradeira", "Travessas/refratários", "Vassoura, rodo e pá"
     ];
 
     // Função para renderizar a lista
     const renderList = () => {
         const listContainer = document.getElementById("presentList");
+
         presents.forEach(present => {
             const listItem = document.createElement("li");
             listItem.textContent = present;
-            listItem.onclick = () => listItem.classList.toggle("selected");
+            listItem.onclick = () => handleSelection(listItem, present);
+            
+            // Verifica se o item foi marcado como 'selecionado' anteriormente
+            if (localStorage.getItem(present) === "selected") {
+                listItem.classList.add("selected");
+                listItem.classList.add("disabled");
+                listItem.onclick = null; // Desabilita o clique
+            }
+
             listContainer.appendChild(listItem);
         });
+    };
+
+    // Função para lidar com a seleção
+    const handleSelection = (item, present) => {
+        item.classList.toggle("selected");
+
+        // Se o item for selecionado, armazena no localStorage
+        if (item.classList.contains("selected")) {
+            localStorage.setItem(present, "selected");
+            item.classList.add("disabled");
+            item.onclick = null; // Desabilita o clique após a seleção
+        } else {
+            localStorage.removeItem(present);
+        }
     };
 
     // Chama a função para renderizar a lista ao carregar a página
